@@ -38,9 +38,9 @@ export default function Login() {
     }
 
     // 3. Redirigir según el rol
-    if (perfil.rol === 'admin') {
+    if (perfil.rol === 'Admin') {
       navigate('/admin');
-    } else if (perfil.rol === 'profesor') {
+    } else if (perfil.rol === 'Profesor') {
       navigate('/profesor');
     } else {
       setError('Rol no reconocido.');
