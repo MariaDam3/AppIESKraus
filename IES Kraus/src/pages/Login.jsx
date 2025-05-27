@@ -24,18 +24,22 @@ export default function Login() {
     }
 
     const user = authData.user;
+    console.log('USER ID:', user.id);
 
     // 2. Buscar el perfil en la tabla "perfiles"
     const { data: perfil, error: perfilError } = await supabase
       .from('perfiles')
-      .select('rol')
+      .select('*')
       .eq('id', user.id)
-      .single();
+      .maybeSingle(); //single();
 
     if (perfilError) {
       setError('Perfil no encontrado.');
       return;
     }
+    console.log('PERFIL:', perfil);
+    console.log('PERFIL ERROR:', perfilError);
+
 
     // 3. Redirigir según el rol
     if (perfil.rol === 'Admin') {
