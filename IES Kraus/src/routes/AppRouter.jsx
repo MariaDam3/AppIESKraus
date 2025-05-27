@@ -3,6 +3,8 @@ import Login from '../pages/Login';
 import DashboardAdmin from '../pages/DashboardAdmin';
 import DashboardProfesor from '../pages/DashboardProfesor';
 import RutaPrivada from './RutaPrivada';
+import SubirJustificante from '../pages/SubirJustificante';
+import MisJustificantes from '../pages/MisJustificantes';
 
 export default function AppRouter() {
   return (
@@ -25,7 +27,26 @@ export default function AppRouter() {
             </RutaPrivada>
           }
         />
+        <Route
+          path="/subir-justificante"
+          element={
+            <RutaPrivada>
+              <SubirJustificante />
+            </RutaPrivada>
+          }
+        />
+        <Route
+          path="/mis-justificantes"
+          element={
+            <RutaPrivada>
+              <MisJustificantes />
+            </RutaPrivada>
+          }
+        />
+
+
       </Routes>
     </BrowserRouter>
   );
+  
 }
