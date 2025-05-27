@@ -29,11 +29,11 @@ export default function Login() {
     // 2. Buscar el perfil en la tabla "perfiles"
     const { data: perfil, error: perfilError } = await supabase
       .from('perfiles')
-      .select('*')
+      .select('rol')
       .eq('id', user.id)
       .maybeSingle(); //single();
 
-    if (perfilError) {
+    if (!perfil) {
       setError('Perfil no encontrado.');
       return;
     }
