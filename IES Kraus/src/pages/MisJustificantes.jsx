@@ -7,11 +7,13 @@ export default function MisJustificantes() {
 
   useEffect(() => {
     const obtenerJustificantes = async () => {
-      const usuario = await supabase.auth.getUser();
-      const userId = usuario.data.user.id;
+      const { data: userData } = await supabase.auth.getUser();
+      const userId = userData?.user?.id;
+
+      if (!userId) return;
 
       const { data, error } = await supabase
-        .from('justificantes')
+        .from('justificantes_ausencias')
         .select('*')
         .eq('usuario_id', userId)
         .order('fecha', { ascending: false });
@@ -36,11 +38,11 @@ export default function MisJustificantes() {
       ) : (
         <table className="w-full border-collapse text-left">
           <thead>
-            <tr className="border-b">
-              <th className="p-2">Fecha</th>
-              <th className="p-2">Motivo</th>
-              <th className="p-2">Estado</th>
-              <th className="p-2">Archivo</th>
+            <tr className="border-b font-semibold">
+              <th className="p-2">📅 Fecha</th>
+              <th className="p-2">📝 Motivo</th>
+              <th className="p-2">🚦 Estado</th>
+              <th className="p-2">📁 Archivo</th>
             </tr>
           </thead>
           <tbody>
@@ -48,7 +50,7 @@ export default function MisJustificantes() {
               <tr key={j.id} className="border-b hover:bg-gray-50">
                 <td className="p-2">{j.fecha}</td>
                 <td className="p-2">{j.motivo}</td>
-                <td className="p-2">{j.estado}</td>
+                <td className="p-2 capitalize">{j.estado}</td>
                 <td className="p-2">
                   <a
                     href={j.archivo_url}
@@ -56,7 +58,7 @@ export default function MisJustificantes() {
                     rel="noopener noreferrer"
                     className="text-blue-600 underline"
                   >
-                    Ver archivo
+                    Ver PDF
                   </a>
                 </td>
               </tr>

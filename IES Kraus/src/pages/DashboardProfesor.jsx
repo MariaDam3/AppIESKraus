@@ -15,12 +15,17 @@ export default function DashboardProfesor() {
 
   const manejarSolicitud = () => {
     console.log('Ir a solicitud de día libre');
-    // navigate('/solicitar-dia-libre');
+    navigate('/solicitar-dia-libre');
   };
 
   const manejarMisJustificantes = () => {
   navigate('/mis-justificantes');
   };
+
+  const manejarMisSolicitudes = () => {
+  navigate('/mis-solicitudes');
+  };
+
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
@@ -57,6 +62,14 @@ export default function DashboardProfesor() {
         >
           <span role="img" aria-label="mis justificantes" className="text-4xl">📁</span>
           <h2 className="text-xl font-semibold mt-2">Mis Justificantes</h2>
+        </button>
+
+        <button
+          onClick={manejarMisSolicitudes}
+          className="bg-white border rounded-xl p-6 shadow hover:bg-blue-50 transition"
+        >
+          <span role="img" aria-label="mis solicitudes" className="text-4xl">📋</span>
+          <h2 className="text-xl font-semibold mt-2">Mis Solicitudes</h2>
         </button>
 
       </div>
